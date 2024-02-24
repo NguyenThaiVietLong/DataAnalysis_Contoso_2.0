@@ -11,27 +11,34 @@ from st_pages import Page, Section, show_pages, add_page_title, hide_pages
 
 add_page_title()
 
-# @st.cache_data
-# def load_data():
-#     # data1 = pd.read_excel('data/2008 Contoso Data.xlsx')
-#     # data2 = pd.read_excel('data/2009 Contoso Data.xlsx')
-#     data1 = pd.read_json("data/jsonl/2008_Contoso_Data.jsonl", lines=True)
-#     data2 = pd.read_json("data/jsonl/2009_Contoso_Data.jsonl", lines=True)
-#     data = pd.concat([data1, data2], ignore_index=True)
+@st.cache_data
+def load_data():
+    # data1 = pd.read_excel('data/2008 Contoso Data.xlsx')
+    # data2 = pd.read_excel('data/2009 Contoso Data.xlsx')
+    data1 = pd.read_json("data/jsonl/2008_Contoso_Data.jsonl", lines=True)
+    data2 = pd.read_json("data/jsonl/2009_Contoso_Data.jsonl", lines=True)
+    data = pd.concat([data1, data2], ignore_index=True)
 
-#     data3 = pd.read_excel('data/excel/Contoso_Lookup_Tables.xlsx', sheet_name=None)
-#     # data = pd.concat([data1, data2], ignore_index=True)
+    data3 = pd.read_excel('data/excel/Contoso_Lookup_Tables.xlsx', sheet_name=None)
+    # data = pd.concat([data1, data2], ignore_index=True)
 
-#     product_data = pd.read_json("data/jsonl/DIM_product.jsonl", lines=True)
-#     # product_data = pd.read_excel('data/Contoso Lookup Tables.xlsx', sheet_name='DIM Product')
-#     # product_subcategory_data = pd.read_excel('data/Contoso Lookup Tables.xlsx', sheet_name='DIM Product Sub Category')
-#     product_subcategory_data = pd.read_json("data/jsonl/DIM_product_subcategory_data.jsonl", lines=True)
-#     # geography_data = pd.read_excel('data/Contoso Lookup Tables.xlsx', sheet_name='DIM Geography')
-#     geography_data = pd.read_json("data/jsonl/DIM_geography_data.jsonl", lines=True)
-#     # channel_data =  pd.read_excel('data/Contoso Lookup Tables.xlsx', sheet_name='DIM Channel')
-#     channel_data =  pd.read_json("data/jsonl/DIM_channel_data.jsonl", lines=True)
-#     return data1,data2, data3, data, product_data, product_subcategory_data, geography_data, channel_data
+    product_data = pd.read_json("data/jsonl/DIM_product.jsonl", lines=True)
+    # product_data = pd.read_excel('data/Contoso Lookup Tables.xlsx', sheet_name='DIM Product')
+    # product_subcategory_data = pd.read_excel('data/Contoso Lookup Tables.xlsx', sheet_name='DIM Product Sub Category')
+    product_subcategory_data = pd.read_json("data/jsonl/DIM_product_subcategory_data.jsonl", lines=True)
+    # geography_data = pd.read_excel('data/Contoso Lookup Tables.xlsx', sheet_name='DIM Geography')
+    geography_data = pd.read_json("data/jsonl/DIM_geography_data.jsonl", lines=True)
+    # channel_data =  pd.read_excel('data/Contoso Lookup Tables.xlsx', sheet_name='DIM Channel')
+    channel_data =  pd.read_json("data/jsonl/DIM_channel_data.jsonl", lines=True)
+    return data1,data2, data3, data, product_data, product_subcategory_data, geography_data, channel_data
 
+if 'data_loaded' not in st.session_state:
+    (st.session_state['data1'], st.session_state['data2'],
+     st.session_state['data3'], st.session_state['data'],
+     st.session_state['product_data'], st.session_state['product_subcategory_data'],
+     st.session_state['geography_data'], st.session_state['channel_data']) = load_data()
+    
+    st.session_state['data_loaded'] = True
 # @st.cache_data
 # def load_model():
 #     new_data = dataReduction(data)
@@ -66,30 +73,29 @@ add_page_title()
 # Nội dung của tab được chọn
 show_pages(
     [
-        Page("main.py", "Data Analysis - Contoso", "💻"),
-        Page("main1.py", "Describe Dataset", "💻"),
-        Page("main2.py", "Data Statistics ", "💻"),
-        Page("main3.py", "Data Preprocessing ", "💻"),
+        Page("dataanalysis_contoso.py", "Data Analysis - Contoso", "💻"),
+        # Page("main1.py", "Describe Dataset", "💻"),
+        # Page("main2.py", "Data Statistics ", "💻"),
+        # Page("main3.py", "Data Preprocessing ", "💻"),
         Section( "Data Visualization ", "💻"),
-        Page("main.py", "Profit Contoso in 2008 - 2009 ", "💻", in_section=True),
-        Page("main.py", "Data Preprocessing ", "💻", in_section=True),
-        Page("main.py", "Why Decrease Revenue ", "💻", in_section=True),
-        Page("main.py", "Supplier's Profit ", "💻", in_section=True),
-        Page("main.py", "Quantity Sale by Class ", "💻", in_section=True),
-        Page("main.py", "Revenue by Class ", "💻", in_section=True),
-        Page("main.py", "Quantity Sold by Brand ", "💻", in_section=True),
-        Page("main.py", "Quantity Sales by Product Subcategory ", "💻", in_section=True),
-        Page("main.py", "Number of Stores by Region ", "💻", in_section=True),
-        Page("main.py", "Profit by Region ", "💻", in_section=True),
-        Page("main.py", "Revenues by Channel ", "💻", in_section=True),
-        Page("main.py", "Summary and Propose ", "💻", in_section=True),
-        Section( "Data Modeling ", "💻"),
-        Page("main.py", "Heatmap ", "💻", in_section=True),
-        Page("main.py", "Data Collection ", "💻", in_section=True),
-        Section( "Machine Learning ", "💻"),
-        Page("main.py", "Calculate model points ", "💻", in_section=True),
-        Page("main.py", "Test model against dataset ", "💻", in_section=True),
-        Page("main.py", "Demo model ", "💻", in_section=True),
+        Page("DataVisualization/ProfitContoso.py", "Profit Contoso", "💻", in_section=True),
+        Page("DataVisualization/wdr.py", "Why Decrease Revenue ", "💻", in_section=True),
+        # Page("main.py", "Supplier's Profit ", "💻", in_section=True),
+        # Page("main.py", "Quantity Sale by Class ", "💻", in_section=True),
+        # Page("main.py", "Revenue by Class ", "💻", in_section=True),
+        # Page("main.py", "Quantity Sold by Brand ", "💻", in_section=True),
+        # Page("main.py", "Quantity Sales by Product Subcategory ", "💻", in_section=True),
+        # Page("main.py", "Number of Stores by Region ", "💻", in_section=True),
+        # Page("main.py", "Profit by Region ", "💻", in_section=True),
+        # Page("main.py", "Revenues by Channel ", "💻", in_section=True),
+        # Page("main.py", "Summary and Propose ", "💻", in_section=True),
+        # Section( "Data Modeling ", "💻"),
+        # Page("main.py", "Heatmap ", "💻", in_section=True),
+        # Page("main.py", "Data Collection ", "💻", in_section=True),
+        # Section( "Machine Learning ", "💻"),
+        # Page("main.py", "Calculate model points ", "💻", in_section=True),
+        # Page("main.py", "Test model against dataset ", "💻", in_section=True),
+        # Page("main.py", "Demo model ", "💻", in_section=True),
 
     ]
 )
