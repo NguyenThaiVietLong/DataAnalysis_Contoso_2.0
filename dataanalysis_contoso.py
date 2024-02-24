@@ -80,7 +80,7 @@ show_pages(
         Section( "Data Visualization ", "💻"),
         Page("DataVisualization/ProfitContoso.py", "Profit Contoso", "💻", in_section=True),
         Page("DataVisualization/wdr.py", "Why Decrease Revenue ", "💻", in_section=True),
-        # Page("main.py", "Supplier's Profit ", "💻", in_section=True),
+        Page("DataVisualization/supProfit.py", "supProfit ", "💻", in_section=True),
         # Page("main.py", "Quantity Sale by Class ", "💻", in_section=True),
         # Page("main.py", "Revenue by Class ", "💻", in_section=True),
         # Page("main.py", "Quantity Sold by Brand ", "💻", in_section=True),
