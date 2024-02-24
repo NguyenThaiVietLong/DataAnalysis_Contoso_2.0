@@ -67,8 +67,30 @@ add_page_title()
 show_pages(
     [
         Page("main.py", "Data Analysis - Contoso", "💻"),
+        Page("main1.py", "Describe Dataset", "💻"),
+        Page("main2.py", "Data Statistics ", "💻"),
+        Page("main3.py", "Data Preprocessing ", "💻"),
+        Section( "Data Visualization ", "💻"),
+        Page("main.py", "Profit Contoso in 2008 - 2009 ", "💻", in_section=True),
+        Page("main.py", "Data Preprocessing ", "💻", in_section=True),
+        Page("main.py", "Why Decrease Revenue ", "💻", in_section=True),
+        Page("main.py", "Supplier's Profit ", "💻", in_section=True),
+        Page("main.py", "Quantity Sale by Class ", "💻", in_section=True),
+        Page("main.py", "Revenue by Class ", "💻", in_section=True),
+        Page("main.py", "Quantity Sold by Brand ", "💻", in_section=True),
+        Page("main.py", "Quantity Sales by Product Subcategory ", "💻", in_section=True),
+        Page("main.py", "Number of Stores by Region ", "💻", in_section=True),
+        Page("main.py", "Profit by Region ", "💻", in_section=True),
+        Page("main.py", "Revenues by Channel ", "💻", in_section=True),
+        Page("main.py", "Summary and Propose ", "💻", in_section=True),
+        Section( "Data Modeling ", "💻"),
+        Page("main.py", "Heatmap ", "💻", in_section=True),
+        Page("main.py", "Data Collection ", "💻", in_section=True),
+        Section( "Machine Learning ", "💻"),
+        Page("main.py", "Calculate model points ", "💻", in_section=True),
+        Page("main.py", "Test model against dataset ", "💻", in_section=True),
+        Page("main.py", "Demo model ", "💻", in_section=True),
 
-        Section("DE Zoomcamp 2024", "🧙‍♂️"),
     ]
 )
 hide_pages(["Thank you"])
